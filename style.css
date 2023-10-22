@@ -16,7 +16,7 @@ body {
   align-items: center;
   justify-content: space-evenly;
   padding: 1rem;
-  background: linear-gradient(to bottom right, #f44336, #ff9800);
+  background: linear-gradient(to bottom right,  #9f722e, #e36860);
 }
 
 .header__img,

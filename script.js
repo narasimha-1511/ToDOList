@@ -76,6 +76,7 @@ darkmode.addEventListener("click", function () {
   } else {
     darkmode.src = "assets/sun.png";
     document.body.style.backgroundColor = "white";
+    document.getElementById("lists").style.backgroundColor = "white";
   }
   // Change the complete background-colors
 })();
