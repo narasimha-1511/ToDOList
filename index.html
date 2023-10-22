@@ -8,15 +8,16 @@
 </head>
 <body>
   <header class="header">
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/756881/laptop.svg" alt="laptop" class="header__img">
+    <img src="assets/laptop.svg" alt="laptop" class="header__img">
     <h1 class="header__title">To-Do List</h1>
     <form class="header__form" action="#">
-      <input type="text" class="header__input" id="myInput" placeholder="Add a new task...">
-      <button class="header__button" onclick="newElement()">Add</button>
+     <div> <input type="text" class="header__input" id="myInput" placeholder="Add a new task..."></div>
+     <div> <button class="header__button" onclick="newElement()">Add</button> </div>
     </form>
+    <img src="assets/sun.png" alt="moon" class="Toggle-img">
   </header>
 
-  <main class="main">
+  <main class="main" id="lists">
     <ul class="main__list" id="myUL">
       <li class="main__item">Gym</li>
       <li class="main__item">Javascript</li>
