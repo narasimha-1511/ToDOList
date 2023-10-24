@@ -1,50 +1,35 @@
 // Load items from local storage if available
 var savedItems = JSON.parse(localStorage.getItem("items")) || [];
+var savedItemsChecked = [];
 
 // Get the list
 var list = document.querySelector("#myUL");
 
-// Add existing items from local storage to the list
-savedItems.forEach(function (itemText) {
-  var li = document.createElement("li");
-  li.className = "main__item";
-  li.appendChild(document.createTextNode(itemText));
-  list.appendChild(li);
+// Function to update local storage
+function updateLocalStorage() {
+  localStorage.setItem("items", JSON.stringify(savedItems));
+}
 
-  // Append the close button
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
+// Function to delete an item from the list and local storage
+function deleteItem(index) {
+  savedItems.splice(index, 1);
+  updateLocalStorage();
+  renderList();
+}
 
-  // This is to close the item
-  span.addEventListener("click", function () {
-    var div = this.parentElement;
-    div.style.display = "none";
-    // Remove the item from local storage
-    savedItems.splice(savedItems.indexOf(div.textContent), 1);
-    localStorage.setItem("items", JSON.stringify(savedItems));
-  });
-  li.appendChild(span);
-
-  // Add a click event listener to the new item
-  li.addEventListener("click", function () {
-    // Toggle the "checked" class on the clicked item
-    this.classList.toggle("main__item--checked");
-  });
-});
-
-// Add a new item to the list and store it in local storage
-function newElement() {
-  var inputValue = document.querySelector("#myInput").value;
-  if (inputValue === "") {
-    alert("You must enter a task!");
-  } else {
-    // Append the new item
+// Function to render the list
+function renderList() {
+  list.innerHTML = "";
+  savedItems.forEach(function (itemText, index) {
     var li = document.createElement("li");
     li.className = "main__item";
-    li.appendChild(document.createTextNode(inputValue));
+    li.appendChild(document.createTextNode(itemText));
     list.appendChild(li);
+
+    // Check if the item was checked before and add the class back
+    if (savedItemsChecked.includes(itemText)) {
+      li.classList.add("main__item--checked");
+    }
 
     // Append the close button
     var span = document.createElement("SPAN");
@@ -52,27 +37,46 @@ function newElement() {
     span.className = "close";
     span.appendChild(txt);
 
-    // This is to close the item
+    // Event listener for deleting the item
     span.addEventListener("click", function () {
-      var div = this.parentElement;
-      div.style.display = "none";
-      // Remove the item from local storage
-      savedItems.splice(savedItems.indexOf(div.textContent), 1);
-      localStorage.setItem("items", JSON.stringify(savedItems));
+      deleteItem(index);
     });
     li.appendChild(span);
-
-    // Add the new item to the local storage
-    savedItems.push(inputValue);
-    localStorage.setItem("items", JSON.stringify(savedItems));
-
-    document.querySelector("#myInput").value = "";
 
     // Add a click event listener to the new item
     li.addEventListener("click", function () {
       // Toggle the "checked" class on the clicked item
       this.classList.toggle("main__item--checked");
+
+      // Update the array of checked items
+      if (this.classList.contains("main__item--checked")) {
+        savedItemsChecked.push(itemText);
+      } else {
+        // Remove the item from the array if unchecked
+        var checkedIndex = savedItemsChecked.indexOf(itemText);
+        if (checkedIndex !== -1) {
+          savedItemsChecked.splice(checkedIndex, 1);
+        }
+      }
     });
+  });
+}
+
+// Render the initial list
+renderList();
+
+// Add a new item to the list and store it in local storage
+function newElement() {
+  var inputValue = document.querySelector("#myInput").value;
+  if (inputValue === "") {
+    alert("You must enter a task!");
+  } else {
+    // Add the new item to the savedItems array
+    savedItems.push(inputValue);
+    updateLocalStorage();
+    renderList();
+
+    document.querySelector("#myInput").value = "";
   }
 }
 
