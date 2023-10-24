@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>To-Do List</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="header">
-    <img src="assets/laptop.svg" alt="laptop" class="header__img">
-    <h1 class="header__title">To-Do List</h1>
-    <form class="header__form" action="#">
-     <div> <input type="text" class="header__input" id="myInput" placeholder="Add a new task..."></div>
-     <div> <button class="header__button" onclick="newElement()">Add</button> </div>
-    </form>
-    <img src="assets/sun.png" alt="moon" class="Toggle-img">
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <title>To-Do List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <img src="assets/laptop.svg" alt="laptop" class="header__img" />
+      <h1 class="header__title">To-Do List</h1>
+      <div class="header__form">
+        <div>
+          <input
+            type="text"
+            class="header__input"
+            id="myInput"
+            placeholder="Add a new task..."
+          />
+        </div>
+        <div>
+          <button class="header__button" onclick="newElement()">Add</button>
+        </div>
+      </div>
+      <img src="assets/sun.png" alt="moon" class="Toggle-img" />
+    </header>
 
-  <main class="main" id="lists">
-    <ul class="main__list" id="myUL">
-      <li class="main__item">Gym</li>
-      <li class="main__item">Javascript</li>
-      <li class="main__item">Meet Friends</li>
-      <li class="main__item">Eat protien Food</li>
-      <li class="main__item">......</li>
-    </ul>
-  </main>
+    <main class="main" id="lists">
+      <ul class="main__list" id="myUL"></ul>
+    </main>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
