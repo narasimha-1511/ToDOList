@@ -75,3 +75,19 @@ function newElement() {
     });
   }
 }
+
+// This is for Dark Mode
+var darkmode = document.getElementsByClassName("Toggle-img")[0];
+darkmode.addEventListener("click", function () {
+  document.body.classList.toggle("dark-mode");
+  if (document.body.classList.contains("dark-mode")) {
+    darkmode.src = "assets/moon.svg";
+    document.body.style.backgroundColor = "black";
+    document.getElementById("lists").style.backgroundColor = "lightgrey";
+  } else {
+    darkmode.src = "assets/sun.png";
+    document.body.style.backgroundColor = "white";
+    document.getElementById("lists").style.backgroundColor = "white";
+  }
+  // Change the complete background-colors
+})();
