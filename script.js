@@ -80,6 +80,20 @@ function newElement() {
   }
 }
 
+// Get the input field
+var input = document.querySelector("#myInput");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    newElement();
+  }
+});
+
 // This is for Dark Mode
 var darkmode = document.getElementsByClassName("Toggle-img")[0];
 darkmode.addEventListener("click", function () {
@@ -93,5 +107,4 @@ darkmode.addEventListener("click", function () {
     document.body.style.backgroundColor = "white";
     document.getElementById("lists").style.backgroundColor = "white";
   }
-  // Change the complete background-colors
-})();
+});
